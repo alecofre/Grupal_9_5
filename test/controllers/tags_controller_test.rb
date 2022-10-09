@@ -1,9 +1,9 @@
 require "test_helper"
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
-  # setup do
-  #   @tag = tags(:one)
-  # end
+  setup do
+    @tag = tags(:one)
+  end
 
   # test "should get index" do
   #   get tags_url
@@ -47,7 +47,9 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   # Test propios caso 1
-  # test "should exist tag in database" do
-  #   assert_difference("Tag.count",0)
-  # end
+  test "should exist tag in database" do
+    assert_difference("Tag.count",0) do
+      @tag.save
+    end
+  end
 end

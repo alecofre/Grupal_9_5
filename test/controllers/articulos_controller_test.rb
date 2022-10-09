@@ -33,10 +33,12 @@ class ArticulosControllerTest < ActionDispatch::IntegrationTest
   #   assert_response :success
   # end
 
-  # test "should update articulo" do
-  #   patch articulo_url(@articulo), params: { articulo: { condicion: @articulo.condicion, descripcion: @articulo.descripcion, marca_id: @articulo.marca_id, nombre: @articulo.nombre, precio: @articulo.precio, user_id: @articulo.user_id } }
-  #   assert_redirected_to articulo_url(@articulo)
-  # end
+  # Test propios caso 7
+  test "should update articulo" do
+    patch articulo_url(@articulo), params: { articulo: { condicion: @articulo.condicion, descripcion: @articulo.descripcion, marca_id: @articulo.marca_id, nombre: @articulo.nombre, precio: @articulo.precio, user_id: @articulo.user_id } }
+    assert_redirected_to articulo_url(@articulo)
+  end
+  # este test da failure porque el proyecto requiere que haya un user conectado para mostrar el artículo, y no sabemos cómo hacer la conexion del usuario por código
 
   # test "should destroy articulo" do
   #   assert_difference("Articulo.count", -1) do
@@ -48,7 +50,7 @@ class ArticulosControllerTest < ActionDispatch::IntegrationTest
 
   # Test propios caso 4
   test "should exist other user articles in database" do
-    @articulos = Articulo.where.not(:user => one)
+    @articulos = Articulo.where.not(:user => :one)
     assert_not_equal "@articulos.count",0
   end
 
@@ -59,11 +61,11 @@ class ArticulosControllerTest < ActionDispatch::IntegrationTest
   end
 
   # Test propios caso 7
-  test "should modify article in database" do
-    antes = articulos(:one)
-    despues = articulos(:one)
-    despues.nombre = 'OtherString'
-    assert_not_equal antes,despues
-  end
+  # test "should modify article in database" do
+  #   antes = articulos(:one)
+  #   despues = articulos(:one)
+  #   despues.nombre = 'OtherString'
+  #   assert_not_equal antes,despues
+  # end
 
 end

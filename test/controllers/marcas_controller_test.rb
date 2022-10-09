@@ -48,6 +48,8 @@ class MarcasControllerTest < ActionDispatch::IntegrationTest
 
   # Test propio caso 2
   test "should exist marca in database" do
-    assert_difference("Marca.count",0)
+    assert_difference("Marca.count",0) do
+      @marca.save
+    end
   end
 end
